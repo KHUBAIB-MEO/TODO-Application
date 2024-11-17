@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:todo_application/screens/home_screen.dart';
 import 'package:todo_application/widgets/cotent_textfeild.dart';
 import 'package:todo_application/widgets/title_textfeild.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  AddTaskScreen({super.key});
+  AddTaskScreen({
+    super.key,
+  });
   final TextEditingController taskTitle = TextEditingController();
   final TextEditingController taskContent = TextEditingController();
   final List tasks = [];
@@ -60,13 +63,23 @@ class AddTaskScreen extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    tasks.add(
-                      {
-                        "Title": taskTitle.text,
-                        "Task": taskContent.text.toString(),
-                      },
-                    );
-                    print(tasks);
+                    if (taskTitle.text.isNotEmpty ||
+                        taskContent.text.isNotEmpty) {
+                      tasks.add(
+                        {
+                          "Title": taskTitle.text,
+                          "Task": taskContent.text.toString(),
+                        },
+                      );
+                    }
+                    //print(tasks);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeScreen(
+                            tasksList: tasks,
+                          ),
+                        ));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,

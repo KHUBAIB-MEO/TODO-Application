@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:todo_application/screens/add_task_screen.dart';
 import 'package:todo_application/widgets/bottom_app_bar.dart';
 import 'package:todo_application/widgets/home_text_feild.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
+  final List? tasksList;
+  const HomeScreen({super.key, this.tasksList});
   @override
   Widget build(BuildContext context) {
+    print("123456 $tasksList");
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
