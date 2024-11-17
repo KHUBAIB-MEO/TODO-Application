@@ -5,6 +5,7 @@ import 'package:todo_application/widgets/title_textfeild.dart';
 class AddTaskScreen extends StatelessWidget {
   AddTaskScreen({super.key});
   final TextEditingController taskTitle = TextEditingController();
+  final TextEditingController taskContent = TextEditingController();
   final List tasks = [];
   @override
   Widget build(BuildContext context) {
@@ -39,15 +40,17 @@ class AddTaskScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 height: 100,
-                child: TitleTextfeild(),
+                child: TitleTextfeild(
+                  titleController: taskTitle,
+                ),
               ),
               const SizedBox(
                 height: 30,
               ),
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
                 height: 350,
-                child: ContentTextField(),
+                child: ContentTextField(contentController: taskContent),
               ),
               const SizedBox(
                 height: 20,
@@ -59,10 +62,11 @@ class AddTaskScreen extends StatelessWidget {
                   onPressed: () {
                     tasks.add(
                       {
-                        "Title": "",
-                        "Task": "kkkk",
+                        "Title": taskTitle.text,
+                        "Task": taskContent.text.toString(),
                       },
                     );
+                    print(tasks);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,

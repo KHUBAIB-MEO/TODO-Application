@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
 class ContentTextField extends StatelessWidget {
-  const ContentTextField({super.key});
+  final TextEditingController contentController;
+  const ContentTextField({super.key, required this.contentController});
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(top: 10, left: 8.0, right: 8.0),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, left: 8.0, right: 8.0),
       child: Stack(
         alignment: Alignment.topLeft,
         children: [
           TextField(
+            controller: contentController,
             expands: true,
             maxLines: null,
             textAlignVertical: TextAlignVertical.top,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               contentPadding:
                   EdgeInsets.only(top: 15, left: 50), // Adjust padding
               filled: true,
@@ -28,7 +30,7 @@ class ContentTextField extends StatelessWidget {
               hintText: "Notes",
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 10,
             left: 10,
             child: Icon(
