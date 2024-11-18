@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:todo_application/widgets/task_review.dart';
 
-Widget taskShow(List<Map<String, String>> tasks, int index) {
+Widget taskShow(
+    List<Map<String, String>> tasks, int index, BuildContext context) {
   return GestureDetector(
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TaskReview(
+              tasks: tasks,
+              index: index,
+            ),
+          ));
+    },
     child: Padding(
       padding: const EdgeInsets.all(15.0),
       child: (Container(

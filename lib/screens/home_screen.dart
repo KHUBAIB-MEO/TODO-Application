@@ -6,9 +6,7 @@ import 'package:todo_application/widgets/task_show_widget.dart';
 List<Map<String, String>> mainTasks = [];
 
 class HomeScreen extends StatelessWidget {
-  // Make sure to pass a mutable list from the calling screen
   const HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     //print("Tasks List: $mainTasks");
@@ -33,10 +31,20 @@ class HomeScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            title: const Text(
+              "Home",
+              style: TextStyle(color: Colors.white),
+            ),
+            iconTheme: const IconThemeData(
+              color: Colors.white,
+            ),
             backgroundColor: Colors.transparent,
           ),
           body: Column(
             children: [
+              const SizedBox(
+                height: 20,
+              ),
               SizedBox(
                 width: double.infinity,
                 height: 50,
@@ -67,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                         child: ListView.builder(
                           itemCount: mainTasks.length,
                           itemBuilder: (context, index) {
-                            return taskShow(mainTasks, index);
+                            return taskShow(mainTasks, index, context);
                           },
                         ),
                       ),
