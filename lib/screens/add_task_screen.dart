@@ -4,12 +4,12 @@ import 'package:todo_application/widgets/cotent_textfeild.dart';
 import 'package:todo_application/widgets/title_textfeild.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  AddTaskScreen({
-    super.key,
-  });
+  final List<Map<String, String>> tasks;
+  AddTaskScreen({super.key, required this.tasks});
+
   final TextEditingController taskTitle = TextEditingController();
   final TextEditingController taskContent = TextEditingController();
-  final List tasks = [];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -65,6 +65,7 @@ class AddTaskScreen extends StatelessWidget {
                   onPressed: () {
                     if (taskTitle.text.isNotEmpty ||
                         taskContent.text.isNotEmpty) {
+                      // Adding task to the mutable list
                       tasks.add(
                         {
                           "Title": taskTitle.text,
@@ -72,14 +73,13 @@ class AddTaskScreen extends StatelessWidget {
                         },
                       );
                     }
-                    //print(tasks);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomeScreen(
-                            tasksList: tasks,
-                          ),
-                        ));
+                    // print(tasks);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,

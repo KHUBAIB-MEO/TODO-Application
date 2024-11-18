@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:todo_application/screens/add_task_screen.dart';
 import 'package:todo_application/widgets/bottom_app_bar.dart';
 import 'package:todo_application/widgets/home_text_feild.dart';
+import 'package:todo_application/widgets/task_show_widget.dart';
+
+List<Map<String, String>> mainTasks = [];
 
 class HomeScreen extends StatelessWidget {
-  final List? tasksList;
-  const HomeScreen({super.key, this.tasksList});
+  // Make sure to pass a mutable list from the calling screen
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    print("123456 $tasksList");
+    //print("Tasks List: $mainTasks");
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -27,34 +31,51 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
             backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-            ),
-            body: Column(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: HomeTextFeild(),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Expanded(
-                  child: Container(
-                      width: double.infinity,
-                      color: Colors.transparent,
-                      height: 586,
-                      child: const SingleChildScrollView(
-                        child: Column(
-                          children: [],
+          ),
+          body: Column(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: HomeTextFeild(),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              mainTasks.isEmpty
+                  ? Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        color: Colors.transparent,
+                        height: 556,
+                        child: const Center(
+                          child: Text(
+                            "No Task to complete",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
                         ),
-                      )),
-                )
-              ],
-            ),
-            bottomNavigationBar: bottomAppBar(context)),
+                      ),
+                    )
+                  : Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        color: Colors.transparent,
+                        height: 586,
+                        child: ListView.builder(
+                          itemCount: mainTasks.length,
+                          itemBuilder: (context, index) {
+                            return taskShow(mainTasks, index);
+                          },
+                        ),
+                      ),
+                    ),
+            ],
+          ),
+          bottomNavigationBar: bottomAppBar(context, mainTasks),
+        ),
       ),
     );
   }

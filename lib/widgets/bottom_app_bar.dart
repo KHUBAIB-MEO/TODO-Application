@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo_application/screens/add_task_screen.dart';
 
-BottomAppBar bottomAppBar(BuildContext context) {
+BottomAppBar bottomAppBar(
+    BuildContext context, List<Map<String, String>> taskList) {
   return BottomAppBar(
     color: Colors.transparent,
     child: Align(
@@ -15,18 +16,21 @@ BottomAppBar bottomAppBar(BuildContext context) {
         ),
         child: Center(
           child: IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddTaskScreen(),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddTaskScreen(
+                    tasks: taskList,
                   ),
-                );
-              },
-              icon: const Icon(
-                Icons.add,
-                size: 40,
-              )),
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.add,
+              size: 40,
+            ),
+          ),
         ),
       ),
     ),
