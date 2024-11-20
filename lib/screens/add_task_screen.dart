@@ -74,12 +74,12 @@ class AddTaskScreen extends StatelessWidget {
                       );
                     }
                     // print(tasks);
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
-                      ),
-                    );
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                        (route) => false);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_application/screens/home_screen.dart';
 import 'package:todo_application/widgets/task_review.dart';
 
 Widget taskShow(
@@ -13,6 +14,73 @@ Widget taskShow(
               index: index,
             ),
           ));
+    },
+    onLongPress: () {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return Center(
+            child: Container(
+              width: 300,
+              height: 300,
+              color: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 300,
+                    height: 100,
+                    color: Colors.transparent,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Edit",
+                          style: TextStyle(fontSize: 25),
+                        ),
+                        SizedBox(
+                          width: 100,
+                        ),
+                        Icon(Icons.edit),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      tasks.removeAt(index);
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeScreen(),
+                          ),
+                          (route) => false);
+                    },
+                    child: Container(
+                      width: 300,
+                      height: 100,
+                      color: Colors.transparent,
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Delete",
+                            style: TextStyle(fontSize: 25),
+                          ),
+                          SizedBox(
+                            width: 100,
+                          ),
+                          Icon(Icons.delete),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      );
     },
     child: Padding(
       padding: const EdgeInsets.all(15.0),
