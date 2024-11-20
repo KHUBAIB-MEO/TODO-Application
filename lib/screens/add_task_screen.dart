@@ -5,12 +5,12 @@ import 'package:todo_application/widgets/title_textfeild.dart';
 
 class AddTaskScreen extends StatelessWidget {
   final List<Map<String, String>> tasks;
-  bool? isEdit;
-  int? index;
+  final bool? isEdit;
+  final int? index;
   AddTaskScreen({super.key, required this.tasks, this.isEdit, this.index});
 
-  TextEditingController taskTitle = TextEditingController();
-  TextEditingController taskContent = TextEditingController();
+  final TextEditingController taskTitle = TextEditingController();
+  final TextEditingController taskContent = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
