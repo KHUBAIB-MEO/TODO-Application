@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:todo_application/screens/add_task_screen.dart';
 import 'package:todo_application/screens/home_screen.dart';
 import 'package:todo_application/widgets/task_review.dart';
 
 Widget taskShow(
     List<Map<String, String>> tasks, int index, BuildContext context) {
+  bool isEdit = false;
   return GestureDetector(
     onTap: () {
       Navigator.push(
@@ -28,22 +30,36 @@ Widget taskShow(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    width: 300,
-                    height: 100,
-                    color: Colors.transparent,
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Edit",
-                          style: TextStyle(fontSize: 25),
-                        ),
-                        SizedBox(
-                          width: 100,
-                        ),
-                        Icon(Icons.edit),
-                      ],
+                  GestureDetector(
+                    onTap: () {
+                      isEdit = true;
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddTaskScreen(
+                              tasks: tasks,
+                              isEdit: isEdit,
+                              index: index,
+                            ),
+                          ));
+                    },
+                    child: Container(
+                      width: 300,
+                      height: 100,
+                      color: Colors.transparent,
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Edit",
+                            style: TextStyle(fontSize: 25),
+                          ),
+                          SizedBox(
+                            width: 100,
+                          ),
+                          Icon(Icons.edit),
+                        ],
+                      ),
                     ),
                   ),
                   GestureDetector(
