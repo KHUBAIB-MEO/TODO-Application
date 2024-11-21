@@ -47,11 +47,11 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
+              /*SizedBox(
                 width: double.infinity,
                 height: 50,
                 child: HomeTextFeild(),
-              ),
+              ),*/
               const SizedBox(
                 height: 50,
               ),
